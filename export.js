@@ -7,7 +7,7 @@ const { execSync, exec } = require("child_process");
   const DIAGRAM_DIR = "./";
 
   // Define the output directory for the SVG files
-  const OUTPUT_DIR = "svg_output";
+  const OUTPUT_DIR = "output/svg";
 
   // Function to recursively find diagram files in subdirectories
   function findDiagramFiles(directory) {
