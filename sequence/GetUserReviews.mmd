@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Pembeli
+  participant V_H as View #10095; HomePage
+  participant C_R as Controller #10095; ReviewController
+  participant M_R as Model #10095; Review
+  participant V_R as View #10095; ReviewPage
+
+  Pembeli->>V_H: klik menu "Ulasan"
+
+  activate Pembeli
+  activate V_H
+
+  V_H->>C_R: paginated_user_reviews()
+
+  deactivate V_H
+
+  activate C_R
+
+  C_R->>M_R: get()
+
+  activate M_R
+
+  M_R-->>C_R: data ulasan
+
+  deactivate M_R
+
+  activate V_R
+  C_R-->>V_R: return view with data ulasan
+
+  deactivate C_R
+  deactivate V_R
+  deactivate Pembeli

@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Admin
+  participant V_DA as View #10095; DashboardAdminPage
+  participant C_C as Controller #10095; CategoryController
+  participant M_C as Model #10095; Category
+  participant V_ACP as View #10095; AdminCategoryPage
+
+  Admin->>V_DA: klik tombl "Kategori"
+
+  activate Admin
+  activate V_DA
+
+  V_DA->>C_C: index()
+
+  deactivate V_DA
+  activate C_C
+
+  C_C->>M_C: get()
+
+  activate M_C
+
+  M_C-->>C_C: data
+
+  deactivate M_C
+
+  activate V_ACP
+
+  C_C-->>V_ACP: return view with data
+
+  deactivate C_C
+  deactivate V_ACP
+  deactivate Admin

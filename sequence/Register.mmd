@@ -1,0 +1,37 @@
+sequenceDiagram
+  actor Pembeli
+  participant V_R as View #10095; RegisterPage
+  participant C_A as Controller #10095; AuthController
+  participant M_U as Model #10095; User
+  participant V_H as View #10095; HomePage
+
+
+  Pembeli->>V_R: Klik tombol "Login"
+  activate Pembeli
+
+  activate V_R
+
+  V_R->>C_A: register(request)
+
+  deactivate V_R
+
+  activate C_A
+
+  opt Invalid Credential
+    C_A-->>Pembeli: return validation message
+  end
+
+  C_A->>M_U: create()
+
+  activate M_U
+
+  M_U-->>C_A: data user
+
+  deactivate M_U
+
+  C_A->>V_H: return view with token and user data
+  activate V_H
+  deactivate V_H
+
+  deactivate C_A
+  deactivate Pembeli

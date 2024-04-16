@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Penjual
+  participant V_DS as View #10095; DashboardSellerPage
+  participant C_S as Controller #10095; StoreController
+  participant M_S as Model #10095; Store
+  participant V_S as View #10095; StoreInfoPage
+
+  Penjual->>V_DS: klik tombol "Info Toko"
+
+  activate Penjual
+  activate V_DS
+
+  V_DS->>C_S: get_user_stre()
+
+  deactivate V_DS
+  activate C_S
+
+  C_S->>M_S: get()
+
+  activate M_S
+
+  M_S-->>C_S: data toko
+
+  deactivate M_S
+
+  activate V_S
+
+  C_S-->>V_S: return view with data toko
+
+  deactivate C_S
+  deactivate V_S
+  deactivate Penjual

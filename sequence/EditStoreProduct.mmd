@@ -1,0 +1,37 @@
+sequenceDiagram
+  actor Penjual
+  participant V_EP as View #10095; EditProductPage
+  participant C_P as Controller #10095; ProductController
+  participant M_P as Model #10095; Product
+  participant V_SP as View #10095; SellerProductPage
+
+
+  Penjual->>V_EP: Klik tombol "Submit" di halaman tambah produk
+  activate Penjual
+
+  activate V_EP
+
+  V_EP->>C_P: store()
+
+  deactivate V_EP
+
+  activate C_P
+
+  opt Invalid Input
+    C_P-->>Penjual: return validation message
+  end
+
+  C_P->>M_P: create()
+
+  activate M_P
+
+  M_P-->>C_P: data produk
+
+  deactivate M_P
+
+  activate V_SP
+  C_P-->>V_SP: return view with data
+  deactivate V_SP
+
+  deactivate C_P
+  deactivate Penjual

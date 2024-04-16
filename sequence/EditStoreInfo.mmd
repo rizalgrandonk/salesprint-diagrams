@@ -1,0 +1,36 @@
+sequenceDiagram
+  actor Penjual
+  participant V_ES as View #10095; EditStorePage
+  participant C_A as Controller #10095; AuthController
+  participant M_S as Model #10095; Store
+
+
+  Penjual->>V_ES: Klik tombol "Simpan"
+  activate Penjual
+
+  activate V_ES
+
+  V_ES->>C_A: update()
+
+  deactivate V_ES
+
+  activate C_A
+
+  opt Invalid Input
+    C_A-->>Penjual: return validation message
+  end
+
+  C_A->>M_S: update()
+
+  activate M_S
+
+  M_S-->>C_A: data toko
+
+  deactivate M_S
+
+  activate V_ES
+  C_A->>V_ES: return view with data toko
+  deactivate V_ES
+
+  deactivate C_A
+  deactivate Penjual

@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Penjual
+  participant V_DS as View #10095; DashboardSellerPage
+  participant C_SC as Controller #10095; StoreCategoryController
+  participant M_SC as Model #10095; StoreCategory
+  participant V_SCP as View #10095; SellerStoreCategoryPage
+
+  Penjual->>V_DS: klik tombl "Etalase"
+
+  activate Penjual
+  activate V_DS
+
+  V_DS->>C_SC: index()
+
+  deactivate V_DS
+  activate C_SC
+
+  C_SC->>M_SC: get()
+
+  activate M_SC
+
+  M_SC-->>C_SC: data
+
+  deactivate M_SC
+
+  activate V_SCP
+
+  C_SC-->>V_SCP: return view with data
+
+  deactivate C_SC
+  deactivate V_SCP
+  deactivate Penjual

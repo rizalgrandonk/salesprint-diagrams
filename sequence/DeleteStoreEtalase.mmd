@@ -1,0 +1,40 @@
+sequenceDiagram
+  actor Admin
+  participant V_ACP as View #10095; AdminCategoryPage
+  participant P_DC as Pop-up #10095; DeleteCategory
+  participant C_C as Controller #10095; CategoryController
+  participant M_C as Model #10095; Category
+  
+  Admin->>V_ACP: klik icon sampah di salah satu data
+  
+  activate Admin
+
+  activate V_ACP
+
+  V_ACP->>P_DC: setIsMdalDeleteOpen(true)
+
+  activate P_DC
+
+  Admin->>P_DC: klik tombl "Hapus"
+  P_DC->>C_C: destroy()
+
+  activate C_C
+
+  C_C->>M_C: delete()
+  
+  activate M_C
+  
+  M_C-->>C_C: return
+
+  deactivate M_C
+
+  C_C-->>V_ACP: return view
+
+  deactivate C_C
+  
+  V_ACP->>P_DC: setIsMdalDeleteOpen(false)
+
+  deactivate P_DC
+  deactivate V_ACP
+
+  deactivate Admin

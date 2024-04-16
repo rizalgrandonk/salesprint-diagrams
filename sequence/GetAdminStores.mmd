@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Admin
+  participant V_DA as View #10095; DashboardAdminPage
+  participant C_S as Controller #10095; StoreController
+  participant M_S as Model #10095; Store
+  participant V_ASP as View #10095; AdminStorePage
+
+  Admin->>V_DA: klik tombl "Daftar Toko"
+
+  activate Admin
+  activate V_DA
+
+  V_DA->>C_S: paginated()
+
+  deactivate V_DA
+  activate C_S
+
+  C_S->>M_S: get()
+
+  activate M_S
+
+  M_S-->>C_S: data
+
+  deactivate M_S
+
+  activate V_ASP
+
+  C_S-->>V_ASP: return view with data
+
+  deactivate C_S
+  deactivate V_ASP
+  deactivate Admin

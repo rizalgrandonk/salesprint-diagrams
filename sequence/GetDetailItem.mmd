@@ -1,0 +1,32 @@
+sequenceDiagram
+  actor Pembeli
+  participant V_H as View #10095; HomePage
+  participant C_P as Controller #10095; ProductController
+  participant M_P as Model #10095; Product
+  participant V_P as View #10095; ProductPage
+
+  Pembeli->>V_H: klik salah satu item
+
+  activate Pembeli
+  activate V_H
+
+  V_H->>C_P: show()
+
+  deactivate V_H
+
+  activate C_P
+
+  C_P->>M_P: get()
+
+  activate M_P
+
+  M_P-->>C_P: data produk
+
+  deactivate M_P
+
+  activate V_P
+  C_P-->>V_P: return view with data produk
+
+  deactivate C_P
+  deactivate V_P
+  deactivate Pembeli

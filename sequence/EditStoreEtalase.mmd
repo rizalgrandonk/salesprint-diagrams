@@ -1,0 +1,45 @@
+sequenceDiagram
+  actor Penjual
+  participant V_SCP as View #10095; SellerStoreCategoryPage
+  participant P_ESC as Pop-up #10095; EditStoreCategory
+  participant C_SC as Controller #10095; StoreCategoryController
+  participant M_SC as Model #10095; StoreCategory
+
+  
+  Penjual->>V_SCP: klik icon pensil di salah satu data
+  
+  activate Penjual
+
+  activate V_SCP
+
+  V_SCP->>P_ESC: setIsMdalEditOpen(true)
+
+  activate P_ESC
+
+  Penjual->>P_ESC: klik tombl "Submit"
+  P_ESC->>C_SC: update()
+
+  activate C_SC
+
+  opt Invalid Input
+    C_SC-->>Penjual: return validation message
+  end
+
+  C_SC->>M_SC: update()
+  
+  activate M_SC
+  
+  M_SC-->>C_SC: return
+
+  deactivate M_SC
+
+  C_SC-->>V_SCP: return view
+
+  deactivate C_SC
+  
+  V_SCP->>P_ESC: setIsMdalEditOpen(false)
+
+  deactivate P_ESC
+  deactivate V_SCP
+
+  deactivate Penjual

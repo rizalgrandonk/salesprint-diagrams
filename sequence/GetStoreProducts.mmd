@@ -1,0 +1,67 @@
+sequenceDiagram
+  actor Penjual
+  participant V_DS as View #10095; DashboardSellerPage
+  participant C_P as Controller #10095; ProductController
+  participant M_P as Model #10095; Product
+  participant V_SP as View #10095; SellerProductPage
+  participant P_DP as Pop-up #10095; DeleteProduct
+
+  Penjual->>V_DS: klik tombl "Produk"
+
+  activate Penjual
+  activate V_DS
+
+  V_DS->>C_P: paginated_store_products()
+
+  deactivate V_DS
+  activate C_P
+
+  C_P->>M_P: get()
+
+  activate M_P
+
+  M_P-->>C_P: data produk
+
+  deactivate M_P
+
+  activate V_SP
+
+  C_P-->>V_SP: return view with data produk
+
+  deactivate C_P
+  deactivate V_SP
+
+  opt Hapus Produk
+    Penjual->>V_SP: klik tombl "Hapus" di salah satu data
+
+    activate V_SP
+
+    V_SP->>P_DP: setIsMdalDeleteOpen(true)
+
+    activate P_DP
+
+    Penjual->>P_DP: klik tombl "Hapus"
+    P_DP->>C_P: destroy()
+
+    activate C_P
+
+    C_P->>M_P: delete()
+    
+    activate M_P
+    
+    M_P-->>C_P: return
+
+    deactivate M_P
+
+    C_P-->>V_SP: return view
+
+    deactivate C_P
+    
+    V_SP->>P_DP: setIsMdalDeleteOpen(false)
+
+    deactivate P_DP
+    deactivate V_SP
+  end
+
+
+  deactivate Penjual

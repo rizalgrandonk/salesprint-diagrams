@@ -1,0 +1,28 @@
+sequenceDiagram
+  actor Pembeli
+  participant V_H as View #10095; HomePage
+  participant C_P as Controller #10095; ProductController
+  participant M_P as Model #10095; Product
+
+  Pembeli->>V_H: akses situs Salesprint
+
+  activate Pembeli
+  activate V_H
+
+  V_H->>C_P: paginated_recomendation()
+
+  activate C_P
+
+  C_P->>M_P: getRecomendation()
+
+  activate M_P
+
+  M_P-->>C_P: data rekomendasi produk
+
+  deactivate M_P
+
+  C_P-->>V_H: return view with rekomendasi produk
+
+  deactivate C_P
+  deactivate V_H
+  deactivate Pembeli
