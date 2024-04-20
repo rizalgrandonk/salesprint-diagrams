@@ -11,7 +11,7 @@ sequenceDiagram
 
   activate V_AVTP
 
-  V_AVTP->>P_CVT: setIsMdalCreateOpen(true)
+  V_AVTP->>P_CVT: setIsModalCreateOpen(true)
 
   activate P_CVT
 
@@ -36,7 +36,7 @@ sequenceDiagram
 
   deactivate C_VT
   
-  V_AVTP->>P_CVT: setIsMdalCreateOpen(false)
+  V_AVTP->>P_CVT: setIsModalCreateOpen(false)
 
   deactivate P_CVT
   deactivate V_AVTP
