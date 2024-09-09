@@ -1,3 +1,4 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '13px', 'fontFamily': 'Inter'}}}%%
 sequenceDiagram
   actor Penjual
   participant V_EP as View #10095; EditProductPage
@@ -11,7 +12,7 @@ sequenceDiagram
 
   activate V_EP
 
-  V_EP->>C_P: store()
+  V_EP->>C_P: update()
 
   deactivate V_EP
 
@@ -21,7 +22,7 @@ sequenceDiagram
     C_P-->>Penjual: return validation message
   end
 
-  C_P->>M_P: create()
+  C_P->>M_P: update()
 
   activate M_P
 

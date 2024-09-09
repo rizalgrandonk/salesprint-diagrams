@@ -1,13 +1,14 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '13px', 'fontFamily': 'Inter'}}}%%
 sequenceDiagram
-  actor Admin
-  participant V_ACP as View #10095; AdminCategoryPage
-  participant P_DC as Pop-up #10095; DeleteCategory
-  participant C_C as Controller #10095; CategoryController
-  participant M_C as Model #10095; Category
+  actor Penjual
+  participant V_ACP as View #10095; SellerStoreCategoryPage
+  participant P_DC as Pop-up #10095; DeleteStoreCategory
+  participant C_C as Controller #10095; StoreCategoryController
+  participant M_C as Model #10095; StoreCategory
   
-  Admin->>V_ACP: klik icon sampah di salah satu data
+  Penjual->>V_ACP: klik icon sampah di salah satu data
   
-  activate Admin
+  activate Penjual
 
   activate V_ACP
 
@@ -15,7 +16,7 @@ sequenceDiagram
 
   activate P_DC
 
-  Admin->>P_DC: klik tombl "Hapus"
+  Penjual->>P_DC: klik tombl "Hapus"
   P_DC->>C_C: destroy()
 
   activate C_C
@@ -37,4 +38,4 @@ sequenceDiagram
   deactivate P_DC
   deactivate V_ACP
 
-  deactivate Admin
+  deactivate Penjual
