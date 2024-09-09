@@ -1,4 +1,8 @@
 {
   "theme": "default",
-  "mirrorActors": false
+  "mirrorActors": false,
+  "themeVariables": { 
+    "fontSize": "16px", 
+    "fontFamily": "Inter"
+  }
 }
