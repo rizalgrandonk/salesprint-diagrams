@@ -1,8 +1,25 @@
 {
-  "theme": "default",
+  "theme": "neutral",
   "mirrorActors": false,
-  "themeVariables": { 
-    "fontSize": "16px", 
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryColor": "#ffffff",
+    "primaryTextColor": "#000000",
+    "primaryBorderColor": "#000000",
+    "lineColor": "#000000",
+    "fontSize": "28px",
     "fontFamily": "Inter"
+  },
+  "themeCSS": "* {font-size: 20px !important;}",
+  "sequence": {
+    "messageFont": {
+      "fontSize": "28px"
+    },
+    "noteFont": {
+      "fontSize": "28px"
+    },
+    "actorFont": {
+      "fontSize": "28px"
+    }
   }
 }
